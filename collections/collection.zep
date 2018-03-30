@@ -171,4 +171,14 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     {
         return this->jsonSerialize();
     }
+
+    /**
+     * Convert collection to array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return this->items;
+    }
 }

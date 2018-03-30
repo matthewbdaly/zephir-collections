@@ -365,3 +365,17 @@ PHP_METHOD(Collections_Collection, toJson) {
 
 }
 
+/**
+ * Convert collection to array
+ *
+ * @return array
+ */
+PHP_METHOD(Collections_Collection, toArray) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "items");
+
+}
+

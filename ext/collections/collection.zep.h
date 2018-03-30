@@ -17,6 +17,7 @@ PHP_METHOD(Collections_Collection, rewind);
 PHP_METHOD(Collections_Collection, valid);
 PHP_METHOD(Collections_Collection, jsonSerialize);
 PHP_METHOD(Collections_Collection, toJson);
+PHP_METHOD(Collections_Collection, toArray);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, items, 1)
@@ -58,5 +59,6 @@ ZEPHIR_INIT_FUNCS(collections_collection_method_entry) {
 	PHP_ME(Collections_Collection, valid, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, jsonSerialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, toJson, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, toArray, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

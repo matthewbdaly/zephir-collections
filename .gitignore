@@ -24,3 +24,9 @@ ext/mkinstalldirs
 ext/run-tests.php
 ext/.deps
 ext/libtool
+
+# Log files
+*.log
+
+# Vim swap files
+*.swp

@@ -192,4 +192,15 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     {
         return new static(array_map(callback, this->items));
     }
+
+    /**
+     * Filter operation
+     *
+     * @param mixed callback The callback to use.
+     * @return Collection
+     */
+    public function filter(callback)
+    {
+        return new static(array_filter(this->items, callback));
+    }
 }

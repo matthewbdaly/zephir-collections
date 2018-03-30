@@ -1,6 +1,8 @@
 namespace Collections;
 
-class Collection
+use Countable;
+
+class Collection implements Countable
 {
     /**
      * Items
@@ -36,5 +38,15 @@ class Collection
     public static function make(array $items)
     {
         return new static($items);
+    }
+
+    /**
+     * Return count of items
+     *
+     * @return integer
+     */
+    public function count()
+    {
+        return count(this->items);
     }
 }

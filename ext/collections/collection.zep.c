@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "ext/spl/spl_iterators.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
@@ -36,6 +37,7 @@ ZEPHIR_INIT_CLASS(Collections_Collection) {
 	 */
 	zend_declare_property_long(collections_collection_ce, SL("position"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, spl_ce_Countable);
 	return SUCCESS;
 
 }
@@ -95,6 +97,24 @@ PHP_METHOD(Collections_Collection, make) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &items);
 	zephir_check_call_status();
 	RETURN_MM();
+
+}
+
+/**
+ * Return count of items
+ *
+ * @return integer
+ */
+PHP_METHOD(Collections_Collection, count) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	RETURN_LONG(zephir_fast_count_int(&_0 TSRMLS_CC));
 
 }
 

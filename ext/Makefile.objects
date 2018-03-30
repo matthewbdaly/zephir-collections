@@ -1,0 +1,48 @@
+collections.lo: /home/matthew/Projects/collections/ext/collections.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/collections.c -o collections.lo 
+kernel/main.lo: /home/matthew/Projects/collections/ext/kernel/main.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/main.c -o kernel/main.lo 
+kernel/memory.lo: /home/matthew/Projects/collections/ext/kernel/memory.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/memory.c -o kernel/memory.lo 
+kernel/exception.lo: /home/matthew/Projects/collections/ext/kernel/exception.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/exception.c -o kernel/exception.lo 
+kernel/debug.lo: /home/matthew/Projects/collections/ext/kernel/debug.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/debug.c -o kernel/debug.lo 
+kernel/backtrace.lo: /home/matthew/Projects/collections/ext/kernel/backtrace.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/backtrace.c -o kernel/backtrace.lo 
+kernel/object.lo: /home/matthew/Projects/collections/ext/kernel/object.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/object.c -o kernel/object.lo 
+kernel/array.lo: /home/matthew/Projects/collections/ext/kernel/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/array.c -o kernel/array.lo 
+kernel/string.lo: /home/matthew/Projects/collections/ext/kernel/string.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/string.c -o kernel/string.lo 
+kernel/fcall.lo: /home/matthew/Projects/collections/ext/kernel/fcall.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/fcall.c -o kernel/fcall.lo 
+kernel/require.lo: /home/matthew/Projects/collections/ext/kernel/require.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/require.c -o kernel/require.lo 
+kernel/file.lo: /home/matthew/Projects/collections/ext/kernel/file.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/file.c -o kernel/file.lo 
+kernel/operators.lo: /home/matthew/Projects/collections/ext/kernel/operators.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/operators.c -o kernel/operators.lo 
+kernel/math.lo: /home/matthew/Projects/collections/ext/kernel/math.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/math.c -o kernel/math.lo 
+kernel/concat.lo: /home/matthew/Projects/collections/ext/kernel/concat.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/concat.c -o kernel/concat.lo 
+kernel/variables.lo: /home/matthew/Projects/collections/ext/kernel/variables.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/variables.c -o kernel/variables.lo 
+kernel/filter.lo: /home/matthew/Projects/collections/ext/kernel/filter.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/filter.c -o kernel/filter.lo 
+kernel/iterator.lo: /home/matthew/Projects/collections/ext/kernel/iterator.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/iterator.c -o kernel/iterator.lo 
+kernel/time.lo: /home/matthew/Projects/collections/ext/kernel/time.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/time.c -o kernel/time.lo 
+kernel/exit.lo: /home/matthew/Projects/collections/ext/kernel/exit.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/kernel/exit.c -o kernel/exit.lo 
+collections/collection.lo: /home/matthew/Projects/collections/ext/collections/collection.zep.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/matthew/Projects/collections/ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/matthew/Projects/collections/ext/collections/collection.zep.c -o collections/collection.lo 
+$(phplibdir)/collections.la: ./collections.la
+	$(LIBTOOL) --mode=install cp ./collections.la $(phplibdir)
+
+./collections.la: $(shared_objects_collections) $(COLLECTIONS_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_collections) $(COLLECTIONS_SHARED_LIBADD)
+

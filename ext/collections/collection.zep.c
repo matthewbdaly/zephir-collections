@@ -21,12 +21,30 @@ ZEPHIR_INIT_CLASS(Collections_Collection) {
 
 	ZEPHIR_REGISTER_CLASS(Collections, Collection, collections, collection, collections_collection_method_entry, 0);
 
+	/**
+	 * Items
+	 *
+	 * @var array
+	 */
 	zend_declare_property_null(collections_collection_ce, SL("items"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	/**
+	 * Position
+	 *
+	 * @var integer
+	 */
+	zend_declare_property_long(collections_collection_ce, SL("position"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
 }
 
+/**
+ * Constructor
+ *
+ * @param array items Items to collect.
+ * @return void
+ */
 PHP_METHOD(Collections_Collection, __construct) {
 
 	zval *items_param = NULL;

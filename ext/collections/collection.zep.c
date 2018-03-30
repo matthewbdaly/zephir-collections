@@ -379,3 +379,34 @@ PHP_METHOD(Collections_Collection, toArray) {
 
 }
 
+/**
+ * Map operation
+ *
+ * @param mixed callback The callback to use.
+ * @return Collection
+ */
+PHP_METHOD(Collections_Collection, map) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *callback, callback_sub, _0, _1;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &callback);
+
+
+
+	object_init_ex(return_value, collections_collection_ce);
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_map", NULL, 2, callback, &_0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_1);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+

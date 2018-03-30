@@ -15,6 +15,7 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/fcall.h"
 
 
 ZEPHIR_INIT_CLASS(Collections_Collection) {
@@ -66,6 +67,34 @@ PHP_METHOD(Collections_Collection, __construct) {
 
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
 	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
+ * Create collection
+ *
+ * @param array items Items to collect.
+ * @return Collection
+ */
+PHP_METHOD(Collections_Collection, make) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *items_param = NULL;
+	zval items;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&items);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &items_param);
+
+	zephir_get_arrval(&items, items_param);
+
+
+	object_init_ex(return_value, collections_collection_ce);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &items);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

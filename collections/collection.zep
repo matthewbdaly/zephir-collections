@@ -26,4 +26,15 @@ class Collection
     {
         let this->items = items;
     }
+
+    /**
+     * Create collection
+     *
+     * @param array items Items to collect.
+     * @return Collection
+     */
+    public static function make(array $items)
+    {
+        return new static($items);
+    }
 }

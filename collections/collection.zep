@@ -3,8 +3,9 @@ namespace Collections;
 use Countable;
 use ArrayAccess;
 use Iterator;
+use JsonSerializable;
 
-class Collection implements Countable, ArrayAccess, Iterator
+class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
 {
     /**
      * Items
@@ -149,5 +150,25 @@ class Collection implements Countable, ArrayAccess, Iterator
     public function valid()
     {
         return isset(this->items[this->position]);
+    }
+
+    /**
+     * Serialize collection to JSON
+     *
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        return json_encode(this->items);
+    }
+
+    /**
+     * Convert collection to JSON
+     *
+     * @return string
+     */
+    public function toJson()
+    {
+        return this->jsonSerialize();
     }
 }

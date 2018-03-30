@@ -18,6 +18,7 @@
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(Collections_Collection) {
@@ -41,6 +42,7 @@ ZEPHIR_INIT_CLASS(Collections_Collection) {
 	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, spl_ce_Countable);
 	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_arrayaccess);
 	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_iterator);
+	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	return SUCCESS;
 
 }
@@ -169,7 +171,7 @@ PHP_METHOD(Collections_Collection, offsetGet) {
 	zephir_read_property(&_1, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_1, offset)) {
 		zephir_read_property(&_2, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "collections/collection.zep", 74 TSRMLS_CC);
+		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "collections/collection.zep", 75 TSRMLS_CC);
 	} else {
 		ZVAL_NULL(&_0);
 	}
@@ -246,7 +248,7 @@ PHP_METHOD(Collections_Collection, current) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
 	zephir_read_property(&_2, this_ptr, SL("position"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 111 TSRMLS_CC);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 112 TSRMLS_CC);
 	RETURN_CTOR(&_1);
 
 }
@@ -322,6 +324,44 @@ PHP_METHOD(Collections_Collection, valid) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, SL("position"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(zephir_array_isset(&_0, &_1));
+
+}
+
+/**
+ * Serialize collection to JSON
+ *
+ * @return string
+ */
+PHP_METHOD(Collections_Collection, jsonSerialize) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	zephir_json_encode(return_value, &_0, 0 );
+	return;
+
+}
+
+/**
+ * Convert collection to JSON
+ *
+ * @return string
+ */
+PHP_METHOD(Collections_Collection, toJson) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "jsonserialize", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

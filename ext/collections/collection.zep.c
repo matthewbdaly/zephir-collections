@@ -40,6 +40,7 @@ ZEPHIR_INIT_CLASS(Collections_Collection) {
 
 	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, spl_ce_Countable);
 	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_arrayaccess);
+	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_iterator);
 	return SUCCESS;
 
 }
@@ -168,7 +169,7 @@ PHP_METHOD(Collections_Collection, offsetGet) {
 	zephir_read_property(&_1, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_1, offset)) {
 		zephir_read_property(&_2, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "collections/collection.zep", 73 TSRMLS_CC);
+		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "collections/collection.zep", 74 TSRMLS_CC);
 	} else {
 		ZVAL_NULL(&_0);
 	}
@@ -223,6 +224,104 @@ PHP_METHOD(Collections_Collection, offsetUnset) {
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_unset(&_0, offset, PH_SEPARATE);
+
+}
+
+/**
+ * Get current item
+ *
+ * @return mixed
+ */
+PHP_METHOD(Collections_Collection, current) {
+
+	zval _0, _1, _2;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_OBS_VAR(&_2);
+	zephir_read_property(&_2, this_ptr, SL("position"), PH_NOISY_CC);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 111 TSRMLS_CC);
+	RETURN_CTOR(&_1);
+
+}
+
+/**
+ * Move counter to next item
+ *
+ * @return void
+ */
+PHP_METHOD(Collections_Collection, next) {
+
+	zval _0, _1;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+
+	zephir_read_property(&_0, this_ptr, SL("position"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_ZVAL_NREF(_1);
+	ZVAL_LONG(&_1, (zephir_get_numberval(&_0) + 1));
+	zephir_update_property_zval(this_ptr, SL("position"), &_1);
+
+}
+
+/**
+ * Get key for current item
+ *
+ * @return mixed
+ */
+PHP_METHOD(Collections_Collection, key) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "position");
+
+}
+
+/**
+ * Move counter back to zero
+ *
+ * @return void
+ */
+PHP_METHOD(Collections_Collection, rewind) {
+
+	zval _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+
+
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_LONG(&_0, 0);
+	zephir_update_property_zval(this_ptr, SL("position"), &_0);
+
+}
+
+/**
+ * Is current item valid?
+ *
+ * @return boolean
+ */
+PHP_METHOD(Collections_Collection, valid) {
+
+	zval _0, _1;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, SL("position"), PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(zephir_array_isset(&_0, &_1));
 
 }
 

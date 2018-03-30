@@ -10,6 +10,11 @@ PHP_METHOD(Collections_Collection, offsetExists);
 PHP_METHOD(Collections_Collection, offsetGet);
 PHP_METHOD(Collections_Collection, offsetSet);
 PHP_METHOD(Collections_Collection, offsetUnset);
+PHP_METHOD(Collections_Collection, current);
+PHP_METHOD(Collections_Collection, next);
+PHP_METHOD(Collections_Collection, key);
+PHP_METHOD(Collections_Collection, rewind);
+PHP_METHOD(Collections_Collection, valid);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, items, 1)
@@ -44,5 +49,10 @@ ZEPHIR_INIT_FUNCS(collections_collection_method_entry) {
 	PHP_ME(Collections_Collection, offsetGet, arginfo_collections_collection_offsetget, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, offsetSet, arginfo_collections_collection_offsetset, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, offsetUnset, arginfo_collections_collection_offsetunset, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, current, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, next, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, key, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, rewind, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, valid, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

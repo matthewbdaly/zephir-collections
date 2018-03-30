@@ -2,8 +2,9 @@ namespace Collections;
 
 use Countable;
 use ArrayAccess;
+use Iterator;
 
-class Collection implements Countable, ArrayAccess
+class Collection implements Countable, ArrayAccess, Iterator
 {
     /**
      * Items
@@ -98,5 +99,55 @@ class Collection implements Countable, ArrayAccess
     public function offsetUnset(offset)
     {
         unset(this->items[offset]);
+    }
+
+    /**
+     * Get current item
+     *
+     * @return mixed
+     */
+    public function current()
+    {
+        return this->items[this->position];
+    }
+
+    /**
+     * Move counter to next item
+     *
+     * @return void
+     */
+    public function next()
+    {
+        let this->position = this->position + 1;
+    }
+
+    /**
+     * Get key for current item
+     *
+     * @return mixed
+     */
+    public function key()
+    {
+        return this->position;
+    }
+
+    /**
+     * Move counter back to zero
+     *
+     * @return void
+     */
+    public function rewind()
+    {
+        let this->position = 0;
+    }
+
+    /**
+     * Is current item valid?
+     *
+     * @return boolean
+     */
+    public function valid()
+    {
+        return isset(this->items[this->position]);
     }
 }

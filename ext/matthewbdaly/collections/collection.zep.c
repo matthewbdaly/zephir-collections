@@ -1,11 +1,11 @@
 
 #ifdef HAVE_CONFIG_H
-#include "../ext_config.h"
+#include "../../ext_config.h"
 #endif
 
 #include <php.h>
-#include "../php_ext.h"
-#include "../ext.h"
+#include "../../php_ext.h"
+#include "../../ext.h"
 
 #include <Zend/zend_operators.h>
 #include <Zend/zend_exceptions.h>
@@ -21,28 +21,28 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(Collections_Collection) {
+ZEPHIR_INIT_CLASS(Matthewbdaly_Collections_Collection) {
 
-	ZEPHIR_REGISTER_CLASS(Collections, Collection, collections, collection, collections_collection_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS(Matthewbdaly\\Collections, Collection, Matthewbdaly, matthewbdaly_collections_collection, matthewbdaly_collections_collection_method_entry, 0);
 
 	/**
 	 * Items
 	 *
 	 * @var array
 	 */
-	zend_declare_property_null(collections_collection_ce, SL("items"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(matthewbdaly_collections_collection_ce, SL("items"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	/**
 	 * Position
 	 *
 	 * @var integer
 	 */
-	zend_declare_property_long(collections_collection_ce, SL("position"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_long(matthewbdaly_collections_collection_ce, SL("position"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, spl_ce_Countable);
-	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_arrayaccess);
-	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zend_ce_iterator);
-	zend_class_implements(collections_collection_ce TSRMLS_CC, 1, zephir_get_internal_ce(SL("jsonserializable")));
+	zend_class_implements(matthewbdaly_collections_collection_ce TSRMLS_CC, 1, spl_ce_Countable);
+	zend_class_implements(matthewbdaly_collections_collection_ce TSRMLS_CC, 1, zend_ce_arrayaccess);
+	zend_class_implements(matthewbdaly_collections_collection_ce TSRMLS_CC, 1, zend_ce_iterator);
+	zend_class_implements(matthewbdaly_collections_collection_ce TSRMLS_CC, 1, zephir_get_internal_ce(SL("jsonserializable")));
 	return SUCCESS;
 
 }
@@ -53,7 +53,7 @@ ZEPHIR_INIT_CLASS(Collections_Collection) {
  * @param array items Items to collect.
  * @return void
  */
-PHP_METHOD(Collections_Collection, __construct) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, __construct) {
 
 	zval *items_param = NULL;
 	zval items;
@@ -83,7 +83,7 @@ PHP_METHOD(Collections_Collection, __construct) {
  * @param array items Items to collect.
  * @return Collection
  */
-PHP_METHOD(Collections_Collection, make) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, make) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *items_param = NULL;
@@ -98,7 +98,7 @@ PHP_METHOD(Collections_Collection, make) {
 	zephir_get_arrval(&items, items_param);
 
 
-	object_init_ex(return_value, collections_collection_ce);
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &items);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -110,7 +110,7 @@ PHP_METHOD(Collections_Collection, make) {
  *
  * @return integer
  */
-PHP_METHOD(Collections_Collection, count) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, count) {
 
 	zval _0;
 	zval *this_ptr = getThis();
@@ -129,7 +129,7 @@ PHP_METHOD(Collections_Collection, count) {
  * @param mixed offset The offset.
  * @return boolean
  */
-PHP_METHOD(Collections_Collection, offsetExists) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, offsetExists) {
 
 	zval *offset, offset_sub, _0;
 	zval *this_ptr = getThis();
@@ -152,7 +152,7 @@ PHP_METHOD(Collections_Collection, offsetExists) {
  * @param mixed offset The offset.
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, offsetGet) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, offsetGet) {
 
 	zval *offset, offset_sub, _0, _1, _2;
 	zval *this_ptr = getThis();
@@ -171,7 +171,7 @@ PHP_METHOD(Collections_Collection, offsetGet) {
 	zephir_read_property(&_1, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_1, offset)) {
 		zephir_read_property(&_2, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "collections/collection.zep", 75 TSRMLS_CC);
+		zephir_array_fetch(&_0, &_2, offset, PH_NOISY, "Matthewbdaly/collections/collection.zep", 75 TSRMLS_CC);
 	} else {
 		ZVAL_NULL(&_0);
 	}
@@ -186,7 +186,7 @@ PHP_METHOD(Collections_Collection, offsetGet) {
  * @param mixed value  The value to set.
  * @return void
  */
-PHP_METHOD(Collections_Collection, offsetSet) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, offsetSet) {
 
 	zval *offset, offset_sub, *value, value_sub;
 	zval *this_ptr = getThis();
@@ -212,7 +212,7 @@ PHP_METHOD(Collections_Collection, offsetSet) {
  * @param mixed offset The offset.
  * @return void
  */
-PHP_METHOD(Collections_Collection, offsetUnset) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, offsetUnset) {
 
 	zval *offset, offset_sub, items, _0;
 	zval *this_ptr = getThis();
@@ -239,7 +239,7 @@ PHP_METHOD(Collections_Collection, offsetUnset) {
  *
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, current) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, current) {
 
 	zval _0, _1, _2;
 	zval *this_ptr = getThis();
@@ -253,7 +253,7 @@ PHP_METHOD(Collections_Collection, current) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
 	zephir_read_property(&_2, this_ptr, SL("position"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 114 TSRMLS_CC);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "Matthewbdaly/collections/collection.zep", 114 TSRMLS_CC);
 	RETURN_CTOR(&_1);
 
 }
@@ -263,7 +263,7 @@ PHP_METHOD(Collections_Collection, current) {
  *
  * @return void
  */
-PHP_METHOD(Collections_Collection, next) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, next) {
 
 	zval _0, _1;
 	zval *this_ptr = getThis();
@@ -284,7 +284,7 @@ PHP_METHOD(Collections_Collection, next) {
  *
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, key) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, key) {
 
 	zval *this_ptr = getThis();
 
@@ -298,7 +298,7 @@ PHP_METHOD(Collections_Collection, key) {
  *
  * @return void
  */
-PHP_METHOD(Collections_Collection, rewind) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, rewind) {
 
 	zval _0;
 	zval *this_ptr = getThis();
@@ -317,7 +317,7 @@ PHP_METHOD(Collections_Collection, rewind) {
  *
  * @return boolean
  */
-PHP_METHOD(Collections_Collection, valid) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, valid) {
 
 	zval _0, _1;
 	zval *this_ptr = getThis();
@@ -337,7 +337,7 @@ PHP_METHOD(Collections_Collection, valid) {
  *
  * @return string
  */
-PHP_METHOD(Collections_Collection, jsonSerialize) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, jsonSerialize) {
 
 	zval _0;
 	zval *this_ptr = getThis();
@@ -356,7 +356,7 @@ PHP_METHOD(Collections_Collection, jsonSerialize) {
  *
  * @return string
  */
-PHP_METHOD(Collections_Collection, toJson) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, toJson) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -375,7 +375,7 @@ PHP_METHOD(Collections_Collection, toJson) {
  *
  * @return array
  */
-PHP_METHOD(Collections_Collection, toArray) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, toArray) {
 
 	zval *this_ptr = getThis();
 
@@ -390,7 +390,7 @@ PHP_METHOD(Collections_Collection, toArray) {
  * @param mixed callback The callback to use.
  * @return Collection
  */
-PHP_METHOD(Collections_Collection, map) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, map) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *callback, callback_sub, _0, _1;
@@ -405,7 +405,7 @@ PHP_METHOD(Collections_Collection, map) {
 
 
 
-	object_init_ex(return_value, collections_collection_ce);
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_FUNCTION(&_1, "array_map", NULL, 2, callback, &_0);
 	zephir_check_call_status();
@@ -421,7 +421,7 @@ PHP_METHOD(Collections_Collection, map) {
  * @param mixed callback The callback to use.
  * @return Collection
  */
-PHP_METHOD(Collections_Collection, filter) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, filter) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *callback, callback_sub, _0, _1;
@@ -436,11 +436,47 @@ PHP_METHOD(Collections_Collection, filter) {
 
 
 
-	object_init_ex(return_value, collections_collection_ce);
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_FUNCTION(&_1, "array_filter", NULL, 3, &_0, callback);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_1);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Reverse filter operation
+ *
+ * @param mixed callback The callback to use.
+ * @return Collection
+ */
+PHP_METHOD(Matthewbdaly_Collections_Collection, reject) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *callback, callback_sub, foundItems, _0, _1, _2;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&foundItems);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &callback);
+
+
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&foundItems, "array_filter", NULL, 3, &_0, callback);
+	zephir_check_call_status();
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
+	zephir_read_property(&_1, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_2, "array_diff", NULL, 4, &_1, &foundItems);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -453,7 +489,7 @@ PHP_METHOD(Collections_Collection, filter) {
  * @param mixed initial  The initial value.
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, reduce) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, reduce) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *callback, callback_sub, *initial = NULL, initial_sub, accumulator, item, _0, *_1, _2$$3;
@@ -478,7 +514,7 @@ PHP_METHOD(Collections_Collection, reduce) {
 
 	ZEPHIR_CPY_WRT(&accumulator, initial);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 223);
+	zephir_is_iterable(&_0, 0, "Matthewbdaly/collections/collection.zep", 235);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);
@@ -493,12 +529,33 @@ PHP_METHOD(Collections_Collection, reduce) {
 }
 
 /**
+ * Pluck a single field
+ *
+ * @param mixed name Name of field to pluck.
+ * @return mixed
+ */
+PHP_METHOD(Matthewbdaly_Collections_Collection, pluck) {
+
+	zval *name, name_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name_sub);
+
+	zephir_fetch_params(0, 1, 0, &name);
+
+
+
+	RETURN_BOOL(1);
+
+}
+
+/**
  * Apply callback to each item in the collection
  *
  * @param mixed callback The callback to use.
  * @return void
  */
-PHP_METHOD(Collections_Collection, each) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, each) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *callback, callback_sub, item, _0, *_1;
@@ -514,7 +571,7 @@ PHP_METHOD(Collections_Collection, each) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 238);
+	zephir_is_iterable(&_0, 0, "Matthewbdaly/collections/collection.zep", 261);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);
@@ -533,7 +590,7 @@ PHP_METHOD(Collections_Collection, each) {
  * @param mixed item Item to push.
  * @return Collection
  */
-PHP_METHOD(Collections_Collection, push) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, push) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *item, item_sub, items, _0;
@@ -551,11 +608,11 @@ PHP_METHOD(Collections_Collection, push) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 4, &items, item);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 5, &items, item);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
-	object_init_ex(return_value, collections_collection_ce);
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
 	zephir_check_call_status();
@@ -568,7 +625,7 @@ PHP_METHOD(Collections_Collection, push) {
  *
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, pop) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, pop) {
 
 	zval items, _0, response;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -583,7 +640,7 @@ PHP_METHOD(Collections_Collection, pop) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 5, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 6, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -597,7 +654,7 @@ PHP_METHOD(Collections_Collection, pop) {
  * @param mixed item Item to push.
  * @return Collection
  */
-PHP_METHOD(Collections_Collection, unshift) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, unshift) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *item, item_sub, items, _0;
@@ -615,11 +672,11 @@ PHP_METHOD(Collections_Collection, unshift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 6, &items, item);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 7, &items, item);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
-	object_init_ex(return_value, collections_collection_ce);
+	object_init_ex(return_value, matthewbdaly_collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
 	zephir_check_call_status();
@@ -632,7 +689,7 @@ PHP_METHOD(Collections_Collection, unshift) {
  *
  * @return mixed
  */
-PHP_METHOD(Collections_Collection, shift) {
+PHP_METHOD(Matthewbdaly_Collections_Collection, shift) {
 
 	zval items, _0, response;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -647,7 +704,7 @@ PHP_METHOD(Collections_Collection, shift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 7, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 8, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);

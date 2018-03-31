@@ -216,38 +216,6 @@ class CollectionSpec extends ObjectBehavior
         ]);
     }
 
-    function it_implements_reject()
-    {
-        $items = [
-            'foo' => 1,
-            'bar' => 2,
-            'baz' => 3
-        ];
-        $this->beConstructedWith($items);
-        $this->reject(function ($v) {
-            return $v <= 1;
-        })->toArray()->shouldReturn([
-            'bar' => 2,
-            'baz' => 3
-        ]);
-    }
-
-    function it_implements_reject_for_non_associative_arrays()
-    {
-        $items = [
-            1,
-            2,
-            3
-        ];
-        $this->beConstructedWith($items);
-        $this->reject(function ($v) {
-            return $v == 1;
-        })->toArray()->shouldReturn([
-            2,
-            3
-        ]);
-    }
-
     function it_implements_reduce()
     {
         $items = [1, 2, 3];
@@ -255,22 +223,6 @@ class CollectionSpec extends ObjectBehavior
         $this->reduce(function ($total, $item) {
             return $total += $item;
         })->shouldReturn(6);
-    }
-
-    function it_implements_pluck()
-    {
-        $items = [[
-            'foo' => 1,
-            'bar' => 2
-        ], [
-            'foo' => 3,
-            'bar' => 4
-        ], [
-            'foo' => 5,
-            'bar' => 6
-        ]];
-        $this->beConstructedWith($items);
-        $this->pluck('foo')->toArray()->shouldReturn([1, 3, 5]);
     }
 
     function it_implements_each(\DateTime $date)

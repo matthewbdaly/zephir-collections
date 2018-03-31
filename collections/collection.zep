@@ -207,18 +207,6 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     }
 
     /**
-     * Reverse filter operation
-     *
-     * @param mixed callback The callback to use.
-     * @return Collection
-     */
-    public function reject(callback)
-    {
-        var foundItems = array_filter(this->items, callback);
-        return new static(array_diff(this->items, foundItems));
-    }
-
-    /**
      * Reduce operation
      *
      * @param mixed callback The callback to use.
@@ -233,17 +221,6 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
             let accumulator = {callback}(accumulator, item);
         }
         return accumulator;
-    }
-
-    /**
-     * Pluck a single field
-     *
-     * @param mixed name Name of field to pluck.
-     * @return mixed
-     */
-    public function pluck(name)
-    {
-        return true;
     }
 
     /**

@@ -214,7 +214,8 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
      */
     public function reject(callback)
     {
-        return new static(array_filter(this->items, ~callback));
+        var foundItems = array_filter(this->items, callback);
+        return new static(array_diff(this->items, foundItems));
     }
 
     /**

@@ -455,10 +455,11 @@ PHP_METHOD(Collections_Collection, filter) {
 PHP_METHOD(Collections_Collection, reject) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *callback, callback_sub, _0, _1, _2;
+	zval *callback, callback_sub, foundItems, _0, _1, _2;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&foundItems);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -468,10 +469,12 @@ PHP_METHOD(Collections_Collection, reject) {
 
 
 
-	object_init_ex(return_value, collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	ZVAL_LONG(&_1, ~zephir_get_intval(callback));
-	ZEPHIR_CALL_FUNCTION(&_2, "array_filter", NULL, 3, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&foundItems, "array_filter", NULL, 3, &_0, callback);
+	zephir_check_call_status();
+	object_init_ex(return_value, collections_collection_ce);
+	zephir_read_property(&_1, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_2, "array_diff", NULL, 4, &_1, &foundItems);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_2);
 	zephir_check_call_status();
@@ -511,7 +514,7 @@ PHP_METHOD(Collections_Collection, reduce) {
 
 	ZEPHIR_CPY_WRT(&accumulator, initial);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 234);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 235);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);
@@ -547,7 +550,7 @@ PHP_METHOD(Collections_Collection, each) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 249);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 250);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);
@@ -584,7 +587,7 @@ PHP_METHOD(Collections_Collection, push) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 4, &items, item);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 5, &items, item);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -616,7 +619,7 @@ PHP_METHOD(Collections_Collection, pop) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 5, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 6, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -648,7 +651,7 @@ PHP_METHOD(Collections_Collection, unshift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 6, &items, item);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 7, &items, item);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -680,7 +683,7 @@ PHP_METHOD(Collections_Collection, shift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 7, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 8, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);

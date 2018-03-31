@@ -232,6 +232,22 @@ class CollectionSpec extends ObjectBehavior
         ]);
     }
 
+    function it_implements_reject_for_non_associative_arrays()
+    {
+        $items = [
+            1,
+            2,
+            3
+        ];
+        $this->beConstructedWith($items);
+        $this->reject(function ($v) {
+            return $v == 1;
+        })->toArray()->shouldReturn([
+            2,
+            3
+        ]);
+    }
+
     function it_implements_reduce()
     {
         $items = [1, 2, 3];

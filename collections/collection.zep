@@ -214,4 +214,21 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     {
         return new static(array_filter(this->items, ~callback));
     }
+
+    /**
+     * Reduce operation
+     *
+     * @param mixed callback The callback to use.
+     * @param mixed initial  The initial value.
+     * @return mixed
+     */
+    public function reduce(callback, initial = 0)
+    {
+        var accumulator = initial;
+        var item;
+        for item in this->items {
+            let accumulator = {callback}(accumulator, item);
+        }
+        return accumulator;
+    }
 }

@@ -21,6 +21,7 @@ PHP_METHOD(Collections_Collection, toArray);
 PHP_METHOD(Collections_Collection, map);
 PHP_METHOD(Collections_Collection, filter);
 PHP_METHOD(Collections_Collection, reject);
+PHP_METHOD(Collections_Collection, reduce);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, items, 1)
@@ -59,6 +60,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection_reject, 0, 0, 1)
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection_reduce, 0, 0, 1)
+	ZEND_ARG_INFO(0, callback)
+	ZEND_ARG_INFO(0, initial)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(collections_collection_method_entry) {
 	PHP_ME(Collections_Collection, __construct, arginfo_collections_collection___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Collections_Collection, make, arginfo_collections_collection_make, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
@@ -78,5 +84,6 @@ ZEPHIR_INIT_FUNCS(collections_collection_method_entry) {
 	PHP_ME(Collections_Collection, map, arginfo_collections_collection_map, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, filter, arginfo_collections_collection_filter, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, reject, arginfo_collections_collection_reject, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, reduce, arginfo_collections_collection_reduce, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -474,3 +474,49 @@ PHP_METHOD(Collections_Collection, reject) {
 
 }
 
+/**
+ * Reduce operation
+ *
+ * @param mixed callback The callback to use.
+ * @param mixed initial  The initial value.
+ * @return mixed
+ */
+PHP_METHOD(Collections_Collection, reduce) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *callback, callback_sub, *initial = NULL, initial_sub, accumulator, item, _0, *_1, _2$$3;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&initial_sub);
+	ZVAL_UNDEF(&accumulator);
+	ZVAL_UNDEF(&item);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_2$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &callback, &initial);
+
+	if (!initial) {
+		initial = &initial_sub;
+		ZEPHIR_INIT_VAR(initial);
+		ZVAL_LONG(initial, 0);
+	}
+
+
+	ZEPHIR_CPY_WRT(&accumulator, initial);
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 232);
+	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
+	{
+		ZEPHIR_INIT_NVAR(&item);
+		ZVAL_COPY(&item, _1);
+		ZEPHIR_CALL_ZVAL_FUNCTION(&_2$$3, callback, NULL, 0, &accumulator, &item);
+		zephir_check_call_status();
+		ZEPHIR_CPY_WRT(&accumulator, &_2$$3);
+	} ZEND_HASH_FOREACH_END();
+	ZEPHIR_INIT_NVAR(&item);
+	RETURN_CCTOR(&accumulator);
+
+}
+

@@ -245,4 +245,16 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
             {callback}(item);
         }
     }
+
+    /**
+     * Push item to end of collection
+     *
+     * @param mixed item Item to push.
+     * @return Collection
+     */
+    public function push(item)
+    {
+        let this->items[] = item;
+        return new static(this->items);
+    }
 }

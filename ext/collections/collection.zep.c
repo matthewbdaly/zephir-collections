@@ -555,3 +555,32 @@ PHP_METHOD(Collections_Collection, each) {
 
 }
 
+/**
+ * Push item to end of collection
+ *
+ * @param mixed item Item to push.
+ * @return Collection
+ */
+PHP_METHOD(Collections_Collection, push) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *item, item_sub, _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&item_sub);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &item);
+
+
+
+	zephir_update_property_array_append(this_ptr, SL("items"), item TSRMLS_CC);
+	object_init_ex(return_value, collections_collection_ce);
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+

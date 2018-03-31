@@ -256,7 +256,9 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
      */
     public function push(item)
     {
-        let this->items[] = item;
+        var items = this->items;
+        array_push(items, item);
+        let this->items = items;
         return new static(this->items);
     }
 

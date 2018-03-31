@@ -569,10 +569,11 @@ PHP_METHOD(Collections_Collection, each) {
 PHP_METHOD(Collections_Collection, push) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *item, item_sub, _0;
+	zval *item, item_sub, items, _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&item_sub);
+	ZVAL_UNDEF(&items);
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
@@ -580,7 +581,13 @@ PHP_METHOD(Collections_Collection, push) {
 
 
 
-	zephir_update_property_array_append(this_ptr, SL("items"), item TSRMLS_CC);
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CPY_WRT(&items, &_0);
+	ZEPHIR_MAKE_REF(&items);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 4, &items, item);
+	ZEPHIR_UNREF(&items);
+	zephir_check_call_status();
+	zephir_update_property_zval(this_ptr, SL("items"), &items);
 	object_init_ex(return_value, collections_collection_ce);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
@@ -609,7 +616,7 @@ PHP_METHOD(Collections_Collection, pop) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 4, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 5, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -641,7 +648,7 @@ PHP_METHOD(Collections_Collection, unshift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 5, &items, item);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 6, &items, item);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);
@@ -673,7 +680,7 @@ PHP_METHOD(Collections_Collection, shift) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&items, &_0);
 	ZEPHIR_MAKE_REF(&items);
-	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 6, &items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_shift", NULL, 7, &items);
 	ZEPHIR_UNREF(&items);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("items"), &items);

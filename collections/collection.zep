@@ -274,6 +274,20 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     }
 
     /**
+     * Push item to start of collection
+     *
+     * @param mixed item Item to push.
+     * @return Collection
+     */
+    public function unshift(item)
+    {
+        var items = this->items;
+        array_unshift(items, item);
+        let this->items = items;
+        return new static(this->items);
+    }
+
+    /**
      * Pop item from start of collection
      *
      * @return mixed

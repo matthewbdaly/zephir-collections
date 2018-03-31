@@ -236,6 +236,19 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
     }
 
     /**
+     * Pluck a single field
+     *
+     * @param mixed name Name of field to pluck.
+     * @return mixed
+     */
+    public function pluck(name)
+    {
+        return this->map(function (item) use (name) {
+            return item[name];
+        });
+    }
+
+    /**
      * Apply callback to each item in the collection
      *
      * @param mixed callback The callback to use.

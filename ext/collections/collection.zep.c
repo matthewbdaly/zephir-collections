@@ -214,18 +214,23 @@ PHP_METHOD(Collections_Collection, offsetSet) {
  */
 PHP_METHOD(Collections_Collection, offsetUnset) {
 
-	zval *offset, offset_sub, _0;
+	zval *offset, offset_sub, items, _0;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset_sub);
+	ZVAL_UNDEF(&items);
 	ZVAL_UNDEF(&_0);
 
-	zephir_fetch_params(0, 1, 0, &offset);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &offset);
 
 
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_unset(&_0, offset, PH_SEPARATE);
+	ZEPHIR_CPY_WRT(&items, &_0);
+	zephir_array_unset(&items, offset, PH_SEPARATE);
+	zephir_update_property_zval(this_ptr, SL("items"), &items);
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -248,7 +253,7 @@ PHP_METHOD(Collections_Collection, current) {
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_2);
 	zephir_read_property(&_2, this_ptr, SL("position"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 112 TSRMLS_CC);
+	zephir_array_fetch(&_1, &_0, &_2, PH_NOISY | PH_READONLY, "collections/collection.zep", 114 TSRMLS_CC);
 	RETURN_CTOR(&_1);
 
 }
@@ -506,7 +511,7 @@ PHP_METHOD(Collections_Collection, reduce) {
 
 	ZEPHIR_CPY_WRT(&accumulator, initial);
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 232);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 234);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);
@@ -542,7 +547,7 @@ PHP_METHOD(Collections_Collection, each) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 247);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 249);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);

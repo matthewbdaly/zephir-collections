@@ -99,7 +99,9 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
      */
     public function offsetUnset(offset)
     {
-        unset(this->items[offset]);
+        var items = this->items;
+        unset(items[offset]);
+        let this->items = items;
     }
 
     /**

@@ -529,6 +529,27 @@ PHP_METHOD(Collections_Collection, reduce) {
 }
 
 /**
+ * Pluck a single field
+ *
+ * @param mixed name Name of field to pluck.
+ * @return mixed
+ */
+PHP_METHOD(Collections_Collection, pluck) {
+
+	zval *name, name_sub;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name_sub);
+
+	zephir_fetch_params(0, 1, 0, &name);
+
+
+
+	RETURN_BOOL(1);
+
+}
+
+/**
  * Apply callback to each item in the collection
  *
  * @param mixed callback The callback to use.
@@ -550,7 +571,7 @@ PHP_METHOD(Collections_Collection, each) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "collections/collection.zep", 250);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 261);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
 		ZEPHIR_INIT_NVAR(&item);

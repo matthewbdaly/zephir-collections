@@ -22,6 +22,7 @@ PHP_METHOD(Collections_Collection, map);
 PHP_METHOD(Collections_Collection, filter);
 PHP_METHOD(Collections_Collection, reject);
 PHP_METHOD(Collections_Collection, reduce);
+PHP_METHOD(Collections_Collection, pluck);
 PHP_METHOD(Collections_Collection, each);
 PHP_METHOD(Collections_Collection, push);
 PHP_METHOD(Collections_Collection, pop);
@@ -70,6 +71,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection_reduce, 0, 0, 1)
 	ZEND_ARG_INFO(0, initial)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection_pluck, 0, 0, 1)
+	ZEND_ARG_INFO(0, name)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_collections_collection_each, 0, 0, 1)
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
@@ -102,6 +107,7 @@ ZEPHIR_INIT_FUNCS(collections_collection_method_entry) {
 	PHP_ME(Collections_Collection, filter, arginfo_collections_collection_filter, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, reject, arginfo_collections_collection_reject, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, reduce, arginfo_collections_collection_reduce, ZEND_ACC_PUBLIC)
+	PHP_ME(Collections_Collection, pluck, arginfo_collections_collection_pluck, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, each, arginfo_collections_collection_each, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, push, arginfo_collections_collection_push, ZEND_ACC_PUBLIC)
 	PHP_ME(Collections_Collection, pop, NULL, ZEND_ACC_PUBLIC)

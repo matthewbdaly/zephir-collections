@@ -520,3 +520,38 @@ PHP_METHOD(Collections_Collection, reduce) {
 
 }
 
+/**
+ * Apply callback to each item in the collection
+ *
+ * @param mixed callback The callback to use.
+ * @return void
+ */
+PHP_METHOD(Collections_Collection, each) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *callback, callback_sub, item, _0, *_1;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&item);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &callback);
+
+
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	zephir_is_iterable(&_0, 0, "collections/collection.zep", 247);
+	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
+	{
+		ZEPHIR_INIT_NVAR(&item);
+		ZVAL_COPY(&item, _1);
+		ZEPHIR_CALL_ZVAL_FUNCTION(NULL, callback, NULL, 0, &item);
+		zephir_check_call_status();
+	} ZEND_HASH_FOREACH_END();
+	ZEPHIR_INIT_NVAR(&item);
+	ZEPHIR_MM_RESTORE();
+
+}
+

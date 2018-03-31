@@ -231,4 +231,18 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
         }
         return accumulator;
     }
+
+    /**
+     * Apply callback to each item in the collection
+     *
+     * @param mixed callback The callback to use.
+     * @return void
+     */
+    public function each(callback)
+    {
+        var item;
+        for item in this->items {
+            {callback}(item);
+        }
+    }
 }

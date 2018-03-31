@@ -1,0 +1,4 @@
+suites:
+    test_suite:
+        namespace: Collections 
+        psr4_prefix: Collections

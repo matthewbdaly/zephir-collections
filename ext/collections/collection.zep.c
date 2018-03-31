@@ -441,3 +441,36 @@ PHP_METHOD(Collections_Collection, filter) {
 
 }
 
+/**
+ * Reverse filter operation
+ *
+ * @param mixed callback The callback to use.
+ * @return Collection
+ */
+PHP_METHOD(Collections_Collection, reject) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *callback, callback_sub, _0, _1, _2;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&callback_sub);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &callback);
+
+
+
+	object_init_ex(return_value, collections_collection_ce);
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZVAL_LONG(&_1, ~zephir_get_intval(callback));
+	ZEPHIR_CALL_FUNCTION(&_2, "array_filter", NULL, 3, &_0, &_1);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_2);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+

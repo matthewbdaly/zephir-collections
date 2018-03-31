@@ -30,3 +30,6 @@ ext/libtool
 
 # Vim swap files
 *.swp
+
+# Vendor directory
+vendor/

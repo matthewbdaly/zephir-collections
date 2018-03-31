@@ -589,3 +589,31 @@ PHP_METHOD(Collections_Collection, push) {
 
 }
 
+/**
+ * Pop item from end of collection
+ *
+ * @return mixed
+ */
+PHP_METHOD(Collections_Collection, pop) {
+
+	zval items, _0, response;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&items);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&response);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("items"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CPY_WRT(&items, &_0);
+	ZEPHIR_MAKE_REF(&items);
+	ZEPHIR_CALL_FUNCTION(&response, "array_pop", NULL, 4, &items);
+	ZEPHIR_UNREF(&items);
+	zephir_check_call_status();
+	zephir_update_property_zval(this_ptr, SL("items"), &items);
+	RETURN_CCTOR(&response);
+
+}
+

@@ -259,4 +259,17 @@ class Collection implements Countable, ArrayAccess, Iterator, JsonSerializable
         let this->items[] = item;
         return new static(this->items);
     }
+
+    /**
+     * Pop item from end of collection
+     *
+     * @return mixed
+     */
+    public function pop()
+    {
+        var items = this->items;
+        var response = array_pop(items);
+        let this->items = items;
+        return response;
+    }
 }
